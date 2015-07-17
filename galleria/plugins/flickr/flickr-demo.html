@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Galleria Flickr Plugin</title>
+        <!-- load jQuery -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+
+        <!-- load Galleria -->
+        <script src="../../galleria-1.4.2.min.js"></script>
+
+        <!-- load flickr plugin -->
+        <script src="galleria.flickr.min.js"></script>
+
+    </head>
+<body>
+    <div class="content">
+        <h1>Galleria Flickr Plugin Demo</h1>
+
+        <!-- Adding gallery images. This is just a container for the dynamic flickr images -->
+
+        <div id="galleria"></div>
+
+    </div>
+    <script>
+
+    // Load the classic theme
+    Galleria.loadTheme('../../themes/classic/galleria.classic.min.js');
+
+    // Initialize Galleria
+    Galleria.configure( {
+        showInfo: true,
+	_toggeInfo: false,
+        overlayOpacity: 0.50,
+        height: 360,
+        responsive: true,
+});
+//        width: 900,
+//    });
+    Galleria.run('#galleria', {
+        autoplay: 5000,
+        clicknext: true,
+        extend: function(options) {
+            Galleria.get(0).$('info-link').click();
+        },
+
+        // search flickr for "galleria"
+//        flickr: 'search:galleria',
+        flickr: 'set:72157634195855239',
+       
+        flickrOptions: {
+            // sort by interestingness
+            sort: 'interestingness-desc'
+        }
+    });
+    </script>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+<?php
+function earth_keen_preprocess_field(&$vars) {
+    static $already_loaded = FALSE;
+    if($vars['element']['#field_name'] == 'field_flickr_set_id') {
+        if (!$already_loaded && !empty($vars['element']['#items'][0]['safe_value'])) {
+            drupal_add_js(drupal_get_path('module', 'ses_galleria') . '/galleria/galleria-1.4.2.min.js',array('preproccess'=>FALSE));
+            drupal_add_js(drupal_get_path('module', 'ses_galleria') . '/galleria/plugins/flickr/galleria.flickr.min.js',array('preprocess'=>FALSE));
+            drupal_add_js(drupal_get_path('module', 'ses_galleria') . '/ses_galleria.js',array('preprocess'=>FALSE));
+            drupal_add_css(drupal_get_path('module','ses_galleria') . '/ses_galleria.css', array('preprocess'=>FALSE));
+            $already_loaded = TRUE;
+        }
+    }
+}
